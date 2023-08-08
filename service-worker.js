@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/feantuns/pipeline-on/precache-manifest.c55e738bc42b04345001f12d74622511.js"
+  "/feantuns/pipeline-on/precache-manifest.67f63c4c8a97045ebaf9cf36fd689ded.js"
 );
 
 self.addEventListener('message', (event) => {
