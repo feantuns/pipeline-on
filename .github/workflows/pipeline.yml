@@ -4,6 +4,8 @@
 name: Node.js CI
 
 on:
+  push:
+    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
@@ -24,6 +26,7 @@ jobs:
     
   deploy:    
     name: Deploy to Github Pages
+    if: github.action_name == 'push'
     needs: build
     runs-on: ubuntu-latest
     steps:
