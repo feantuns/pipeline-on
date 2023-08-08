@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/feantuns/pipeline-on/static/css/main.4b738920.chunk.css",
+    "main.js": "/feantuns/pipeline-on/static/js/main.bcc8e3bc.chunk.js",
+    "main.js.map": "/feantuns/pipeline-on/static/js/main.bcc8e3bc.chunk.js.map",
+    "runtime-main.js": "/feantuns/pipeline-on/static/js/runtime-main.b6a9d23f.js",
+    "runtime-main.js.map": "/feantuns/pipeline-on/static/js/runtime-main.b6a9d23f.js.map",
+    "static/js/2.3f04e31a.chunk.js": "/feantuns/pipeline-on/static/js/2.3f04e31a.chunk.js",
+    "static/js/2.3f04e31a.chunk.js.map": "/feantuns/pipeline-on/static/js/2.3f04e31a.chunk.js.map",
+    "index.html": "/feantuns/pipeline-on/index.html",
+    "precache-manifest.c55e738bc42b04345001f12d74622511.js": "/feantuns/pipeline-on/precache-manifest.c55e738bc42b04345001f12d74622511.js",
+    "service-worker.js": "/feantuns/pipeline-on/service-worker.js",
+    "static/css/main.4b738920.chunk.css.map": "/feantuns/pipeline-on/static/css/main.4b738920.chunk.css.map",
+    "static/js/2.3f04e31a.chunk.js.LICENSE.txt": "/feantuns/pipeline-on/static/js/2.3f04e31a.chunk.js.LICENSE.txt",
+    "static/media/OctoCat.jpg": "/feantuns/pipeline-on/static/media/OctoCat.c4d9ebc1.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b6a9d23f.js",
+    "static/js/2.3f04e31a.chunk.js",
+    "static/css/main.4b738920.chunk.css",
+    "static/js/main.bcc8e3bc.chunk.js"
+  ]
+}
