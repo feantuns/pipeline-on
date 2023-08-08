@@ -9,7 +9,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={mba} className="App-logo" alt="logo" />
-          <h1 className="App-title">Agora vai 333</h1>
+          <h1 className="App-title">Deploy apenas ao mergear</h1>
         </header>
       </div>
     );
