@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -18,29 +19,17 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x     
-    - run: npm install --save-dev cross-env   
-    - run: npm install react
-    - run: npm install react-dom
-    - run: npm install --save gh-pages
-    - run: npm install react-scripts
+    - run: npm install
+    - run: npm run build
     
-    - name: Set up Git user
-      run: |
-       git config --global user.name $user_name
-       git config --global user.email $user_email
-       git remote set-url origin https://${github_token}@github.com/${repository}
-      env:
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        repository: ${{ github.repository }}
-        
-    - name: Build
-      run: npm run build
-    
-    - name: Deploy to Github Pages
-      uses: peaceiris/actions-gh-pages@v3
+  deploy:    
+    name: Deploy to Github Pages
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./build
+    
 
