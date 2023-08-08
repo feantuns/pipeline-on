@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.2",
   "private": true,
-  "homepage": "https://github.com/feantuns/pipeline-on/",
+  "homepage": "https://github.com/feantuns/pipeline-on",
   "predeploy": "npm run build",
   "deploy": "gh-pages -d build",  
   "dependencies": {
