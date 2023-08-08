@@ -46,7 +46,7 @@ jobs:
    steps:
     - name: Deploy to Github Pages
       uses: peaceiris/actions-gh-pages@v3
-      with:
+      env:
         github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
         publish_dir: ./build
         user_name: 'github-actions[bot]'
