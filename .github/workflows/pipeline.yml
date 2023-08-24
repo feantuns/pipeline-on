@@ -6,10 +6,32 @@ name: Node.js CI
 on:
   push:
     branches: [ "master" ]
-
+ 
 jobs:
-  prepare:
-    name: Prepare
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        cache: 'npm'
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x    
+    - name: Install dependencies 
+    - run: npm install
+    - name: Test and coverage
+    - run: npm run test
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
+  build:
+    name: Build
+    needs: sonarcloud
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -19,27 +41,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x     
+    - name: Install dependencies
     - run: npm install
-
-  test:
-    name: Test
-    needs: prepare
-    runs-on: ubuntu-latest
-    steps:
-    - run: npm run test
-        
-  build:
-    name: Build
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-    - run: npm run build
-
-  publish:
-    name: Publish
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
+    - name: Build
+    - run: npm run build 
     - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v2
       with:
@@ -47,7 +52,7 @@ jobs:
     
   deploy:    
     name: Deploy to Github Pages
-    needs: publish
+    needs: build
     permissions:
       pages: write
       id-token: write
@@ -59,5 +64,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-    
-
