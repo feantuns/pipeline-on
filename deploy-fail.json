@@ -1,0 +1,7 @@
+[
+    {
+      "search": "{statusDeploy}",
+      "replace": "Deu ruim",
+      "eval": false
+    }
+  ]

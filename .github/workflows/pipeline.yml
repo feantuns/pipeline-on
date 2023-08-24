@@ -60,3 +60,28 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+  
+  success_deploy:
+    name: Update README with success status
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Readme-Workflows/readme-replacer@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          CUSTOM_REPLACER_FILE: './deploy-success.json'
+
+  fail_deploy:
+    name: Update README with fail status
+    needs: ['sonarcloud', 'build', 'deploy', 'success_deploy']
+    if: ${{ always() && contains(needs.*.result, 'failure') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Readme-Workflows/readme-replacer@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          CUSTOM_REPLACER_FILE: './deploy-fail.json'

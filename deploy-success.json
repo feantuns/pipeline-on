@@ -1,0 +1,7 @@
+[
+    {
+      "search": "{statusDeploy}",
+      "replace": "Ok",
+      "eval": false
+    }
+  ]
