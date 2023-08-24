@@ -41,18 +41,35 @@ jobs:
         node-version: 12.x     
     - run: npm install
     - run: npm run build 
-    - name: Upload build
+    - name: Upload build folder
       uses: actions/upload-artifact@v3
       with:
         name: build
         path: 'build/'
+
+  # cypress-run:
+  #   runs-on: ubuntu-22.04
+  #   needs: build
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #     - name: Download the build folder
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: build
+  #         path: build
+  #     - name: Cypress run
+  #       uses: cypress-io/github-action@v5
+  #       with:
+  #         start: npm start
+  #         browser: chrome
 
   publish:
     name: Publish to Pages Artifacts
     needs: build
     runs-on: windows-latest
     steps:
-      - name: Download build
+      - name: Download the build folder
         uses: actions/download-artifact@v3
         with:
           name: build
@@ -60,7 +77,6 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           name: build
-          path: 'build/'
     
   deploy:    
     name: Deploy to Github Pages
