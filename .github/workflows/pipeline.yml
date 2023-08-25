@@ -62,7 +62,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          start: npm start
+          install: false
+          start: npm install -g serve && npm run serve
           browser: chrome
 
   publish:
@@ -74,6 +75,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
+          path: build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
