@@ -113,7 +113,8 @@ jobs:
 
   fail_deploy:
     name: Fail README
-    needs: ['sonarcloud', 'build', 'deploy']
+    # needs: ['sonarcloud', 'build', 'deploy']
+    needs: ['build', 'deploy']
     if: ${{ always() && contains(needs.*.result, 'failure') }}
     runs-on: ubuntu-latest
     permissions:
