@@ -63,7 +63,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           install: false
-          build: npm i -D cypress serve
+          build: npm i -D cypress serve @testing-library/cypress
           start: npm run serve
           browser: chrome
 
