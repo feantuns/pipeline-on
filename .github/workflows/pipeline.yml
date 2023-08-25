@@ -67,7 +67,7 @@ jobs:
 
   publish:
     name: Publish to Pages Artifacts
-    needs: build
+    needs: cypress-run
     runs-on: windows-latest
     steps:
       - name: Download the build folder
