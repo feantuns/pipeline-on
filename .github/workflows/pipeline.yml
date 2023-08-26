@@ -8,8 +8,9 @@ on:
     branches: [ "master" ]
 
 jobs:
-  sonarcloud:
-    name: SonarCloud
+  unit-tests:
+    name: Unit Tests
+    needs: sonarcloud
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -18,9 +19,25 @@ jobs:
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:
-        node-version: 12.x    
+        node-version: 12.x     
     - run: npm install
     - run: npm run test
+    - name: Upload coverage folder
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage
+        path: coverage
+
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Download the coverage folder
+      uses: actions/download-artifact@v3
+      with:
+        name: coverage
+        path: coverage
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
       env:
@@ -29,7 +46,7 @@ jobs:
         
   build:
     name: Build
-    needs: sonarcloud
+    needs: unit-tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
