@@ -1,3 +1,3 @@
 # Pipelines on
 
-## Status Deploy: Deu ruim
+## Status Deploy: Ok
